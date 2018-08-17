@@ -14,7 +14,6 @@ public class Test0 implements  Runnable {
      System.out.println("开始执行的时候:" + startTime);
 
 
-
        synchronized (Test0.class){
          for (int i=0;i<10;i++){
            Thread thread =new Thread(new Test0());
@@ -37,13 +36,20 @@ public class Test0 implements  Runnable {
   @Override
   public   void   run() {
 
+    /**
+     *  这种写法没办法保证 count =100000  并且省时  性能不够好
+     */
+    //for (int i= 0; i<10000;i++){
+    //   synchronized (this){
+    //      count ++ ;
+    //   }
+    //}
+
 
 
      synchronized (Test0.class){
        for (int i = 0; i<10000; i++){
-         //synchronized (this){
          count ++;
-         // }
        }
      }
 
